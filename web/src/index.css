@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+.mesh-bg {
+  background-image: 
+    radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(255, 255, 255, 0.03) 0px, transparent 50%);
+}
+
+.text-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Shining Text Effect for Explore. Engineer. Evolve. */
+@keyframes shine {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.shining-text {
+  background: linear-gradient(
+    110deg,
+    #71717a 35%,
+    #ffffff 50%,
+    #71717a 65%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 4.5s linear infinite;
+}
+
+/* Ambient Slow Breathing Glow */
+@keyframes ambient-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+.ambient-glow {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(500px, 90vw);
+  height: 260px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.07) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  animation: ambient-pulse 8s ease-in-out infinite;
+}
+
+/* Fade In Up Entrance Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Seat Progress Shimmer */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.shimmer-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 2.5s infinite;
+}
+
+.btn-hero {
+  background: #ffffff;
+  color: #000000;
+  font-weight: 800;
+  padding: 0.875rem 1.5rem;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-hero:hover {
+  background: #e4e4e7;
+  transform: translateY(-1px);
+}
+
+.btn-hero:active {
+  transform: translateY(0);
+}
+
+.btn-hero:disabled:hover {
+  background: #ffffff;
+  transform: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.75rem;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #ffffff;
+  color: #000000;
+}
+
+/* Respect users who turn off animations */
+@media (prefers-reduced-motion: reduce) {
+  .shining-text,
+  .ambient-glow,
+  .shimmer-bar::after,
+  .animate-fade-in-up {
+    animation: none !important;
+  }
+}
